@@ -35,4 +35,4 @@ function onLoadHadler(response) {
   console.log(result);
 }
 
-export { dragenterHandler, dropHandler, filesHandler, onLoadHadler };
+export { dragenterHandler, dropHandler, filesHandler, onLoadHadler, clearDropZone };
