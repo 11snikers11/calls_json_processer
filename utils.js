@@ -8,7 +8,7 @@ function proceedCalls(call) {
     steps.forEach(step => slots.push(step.slots.filter(slot => slot.name === 'dummy')));
   }
   return {
-    id: call._id,
+    sessionId: call.session_id,
     ani: call.ani,
     disconnectReason: call.disconnect_reason,
     isCaseCreated: isCaseCreatedByCall(call),
@@ -25,7 +25,7 @@ function returnCsvFromArray(processedCalls) {
   const csvString = processedCalls
     .map(call => {
       const slots = call.slots.map(slot => (slot[0] ? slot[0].value : 'NONE'));
-      return [call.id, call.ani, call.disconnectReason, call.isCaseCreated, slots];
+      return [call.sessionId, call.ani, call.disconnectReason, call.isCaseCreated, slots];
     })
     .map(el => el.join(','))
     .join('\n');
