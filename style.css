@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 768px;
+  background: radial-gradient(circle, skyblue, steelblue);
+  color: #222;
+}
+
+div {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10em;
+  font-weight: bold;
+  border: 6px solid;
+  border-radius: 8px;
+  user-select: none;
+  cursor: pointer;
+  transition: opacity 200ms linear;
+  margin-bottom: 10px;
+}
+
+.dragover {
+  border: 2px dotted;
+}
+
+.file-not-allowed {
+  color: red;
+  border: none;
+  cursor: pointer;
+  transform: rotate(45deg);
+}
+
+div:hover {
+  opacity: 0.5;
+}
+
+input {
+  display: none;
+}
