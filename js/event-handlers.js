@@ -29,7 +29,7 @@ function filesHandler(file) {
 
 function onLoadHadler(response) {
   const json = JSON.parse(response);
-  const allCalls = json.data.stats.calls;
+  const allCalls = json.data.stats.calls.filter(call => call.ani !== '500');
   let processedCalls = allCalls.map(proceedCalls);
   const result = returnCsvFromArray(processedCalls);
   console.log(result);
