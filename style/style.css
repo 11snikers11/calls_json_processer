@@ -11,12 +11,6 @@ body {
   color: #222;
 }
 
-/* .report-type-radio {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
-
 #inputBtn {
   width: 150px;
   height: 150px;
@@ -34,12 +28,12 @@ body {
 }
 
 .dragover {
-  border: 2px dotted;
+  border: 2px dotted !important;
 }
 
 .file-not-allowed {
   color: red;
-  border: none;
+  border: none !important;
   cursor: pointer;
   transform: rotate(45deg);
 }

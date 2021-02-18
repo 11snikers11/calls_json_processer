@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="shortcut icon" href="./static/favicon.svg" type="image/x-icon" />
     <title>Json processer</title>
@@ -13,12 +19,25 @@
     <input type="file" id="filesInput" accept=".json" />
     <div class="report-type-radio">
       <p>
-        <input type="radio" name="reportType" id="allCallsType" value="commonReport" checked />Общий
-        отчет
+        <input
+          class="form-check-input"
+          type="radio"
+          name="reportType"
+          id="allCallsType"
+          value="commonReport"
+          checked
+        />
+        <label class="form-check-label" for="allCallsType"> Общий отчёт </label>
       </p>
       <p>
-        <input type="radio" name="reportType" id="intentsType" value="intentReport" />Отчет по
-        интентам
+        <input
+          class="form-check-input"
+          type="radio"
+          name="reportType"
+          id="intentsType"
+          value="intentReport"
+        />
+        <label class="form-check-label" for="intentsType"> Отчёт по интентам </label>
       </p>
     </div>
     <script src="./js/index.js" type="module"></script>
