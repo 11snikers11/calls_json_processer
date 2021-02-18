@@ -1,4 +1,5 @@
 import * as consts from './constants.js';
+import * as toasts from './toast.js';
 
 function createReport(call) {
   const reportType = getReportType();
@@ -92,7 +93,9 @@ function returnCsvIntentReport(processedCalls) {
 }
 
 function displayFileName(fileName) {
-  window.alert(fileName + ' DONE, Press F12, then refresh');
+  // window.alert(fileName + ' DONE, Press F12, then refresh');
+  const toast = toasts.initToasts();
+  toast.show();
 }
 
 function getReportType() {

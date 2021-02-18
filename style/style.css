@@ -38,10 +38,12 @@ body {
   transform: rotate(45deg);
 }
 
-#inputBtn:hover {
-  opacity: 0.5;
+.report-type-radio {
+  display: flex;
+  justify-content: space-around;
 }
 
-#filesInput {
-  display: none;
+.file-form {
+  display: flex;
+  flex-direction: column;
 }

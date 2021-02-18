@@ -15,31 +15,54 @@
     <title>Json processer</title>
   </head>
   <body>
-    <div id="inputBtn">+</div>
-    <input type="file" id="filesInput" accept=".json" />
-    <div class="report-type-radio">
-      <p>
-        <input
-          class="form-check-input"
-          type="radio"
-          name="reportType"
-          id="allCallsType"
-          value="commonReport"
-          checked
-        />
-        <label class="form-check-label" for="allCallsType"> Общий отчёт </label>
-      </p>
-      <p>
-        <input
-          class="form-check-input"
-          type="radio"
-          name="reportType"
-          id="intentsType"
-          value="intentReport"
-        />
-        <label class="form-check-label" for="intentsType"> Отчёт по интентам </label>
-      </p>
+    <div class="file-form">
+      <label for="formFile" class="form-label">Сюда надо добавить файл отчёта</label>
+      <input class="form-control mb-2" type="file" id="filesInput" accept=".json" />
+      <div class="report-type-radio mb-2">
+        <div>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="reportType"
+            id="allCallsType"
+            value="commonReport"
+            checked
+          />
+          <label class="form-check-label" for="allCallsType"> Общий отчёт </label>
+        </div>
+        <div>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="reportType"
+            id="intentsType"
+            value="intentReport"
+          />
+          <label class="form-check-label" for="intentsType"> Отчёт по интентам </label>
+        </div>
+      </div>
+      <button id="processFile" type="button" class="btn btn-primary">Обработать</button>
     </div>
+    <div class="toast-container position-absolute p-3 bottom-0 end-0" id="toastPlacement">
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Готово</strong>
+          <small></small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">Файл обработан. Посмотри в консоль F12.</div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>
