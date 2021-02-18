@@ -11,7 +11,13 @@ body {
   color: #222;
 }
 
-div {
+/* .report-type-radio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+#inputBtn {
   width: 150px;
   height: 150px;
   display: flex;
@@ -38,10 +44,10 @@ div {
   transform: rotate(45deg);
 }
 
-div:hover {
+#inputBtn:hover {
   opacity: 0.5;
 }
 
-input {
+#filesInput {
   display: none;
 }

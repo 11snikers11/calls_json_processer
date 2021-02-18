@@ -1,4 +1,4 @@
-import { returnCsvFromArray, displayFileName, proceedCalls } from './utils.js';
+import { displayFileName, createReport } from './utils.js';
 
 function dragenterHandler(event) {
   if (event.dataTransfer.items[0].type !== 'application/json') {
@@ -30,9 +30,8 @@ function filesHandler(file) {
 function onLoadHadler(response) {
   const json = JSON.parse(response);
   const allCalls = json.data.stats.calls.filter(call => call.ani !== '500');
-  let processedCalls = allCalls.map(proceedCalls);
-  const result = returnCsvFromArray(processedCalls);
-  console.log(result);
+  let report = createReport(allCalls);
+  console.log(report);
 }
 
 export { dragenterHandler, dropHandler, filesHandler, onLoadHadler, clearDropZone };

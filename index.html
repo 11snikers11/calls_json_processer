@@ -11,6 +11,16 @@
   <body>
     <div id="inputBtn">+</div>
     <input type="file" id="filesInput" accept=".json" />
+    <div class="report-type-radio">
+      <p>
+        <input type="radio" name="reportType" id="allCallsType" value="commonReport" checked />Общий
+        отчет
+      </p>
+      <p>
+        <input type="radio" name="reportType" id="intentsType" value="intentReport" />Отчет по
+        интентам
+      </p>
+    </div>
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>

@@ -1,8 +1,21 @@
 import * as consts from './constants.js';
 
-function proceedCalls(call) {
-  const steps = call.steps.filter(step => step.node_name === 'Class');
+function createReport(call) {
+  const reportType = getReportType();
+  switch (reportType) {
+    case 'commonReport':
+      const commonReport = call.map(elem => createCommonReport(elem));
+      const csvCommonResult = returnCsvCommonReport(commonReport);
+      return csvCommonResult;
+    case 'intentReport':
+      const intentReport = call.map(elem => createIntentReport(elem));
+      const csvIntentResult = returnCsvIntentReport(intentReport);
+      return csvIntentResult;
+  }
+}
 
+function createCommonReport(call) {
+  const steps = call.steps.filter(step => step.node_name === 'Class');
   let slots = [];
   if (steps.length) {
     steps.forEach(step => slots.push(step.slots.filter(slot => slot.name === 'dummy')));
@@ -17,6 +30,25 @@ function proceedCalls(call) {
   };
 }
 
+function createIntentReport(call) {
+  const steps = call.steps.filter(step => step.node_name === 'Class');
+  let slots = [];
+  if (steps.length) {
+    steps.forEach(step => {
+      step.slots.forEach(slot => {
+        if (slot && slot.name === 'dummy') {
+          slots.push(`${slot.value},${step.utterance},`);
+        }
+      });
+    });
+  }
+  return {
+    sessionId: call.session_id,
+    ani: call.ani,
+    slots,
+  };
+}
+
 function isCaseCreatedByCall(call) {
   const steps = call.steps.filter(step => consts.createCaseNodeIds.includes(step.node_id));
   return steps.length > 0;
@@ -27,7 +59,7 @@ function isClientHasFewCards(call) {
   return steps.length > 0;
 }
 
-function returnCsvFromArray(processedCalls) {
+function returnCsvCommonReport(processedCalls) {
   const csvString = [
     ['ИД сессии', 'Ani', 'Причина разрыва', 'Обращение создано', 'Несколько карт', 'Шаги'],
     ...processedCalls.map(call => {
@@ -47,10 +79,29 @@ function returnCsvFromArray(processedCalls) {
   return csvString;
 }
 
-function displayFileName(fileName) {
-  const fileNameCaption = document.createElement('h3');
-  fileNameCaption.append(fileName + ' DONE, Press F12, then refresh');
-  document.body.append(fileNameCaption);
+function returnCsvIntentReport(processedCalls) {
+  const csvString = [
+    ['ИД сессии', 'Ani', 'Шаги'],
+    ...processedCalls.map(call => {
+      return [call.sessionId, call.ani, call.slots];
+    }),
+  ]
+    .map(el => el.join(','))
+    .join('\n');
+  return csvString;
 }
 
-export { proceedCalls, isCaseCreatedByCall, returnCsvFromArray, displayFileName };
+function displayFileName(fileName) {
+  window.alert(fileName + ' DONE, Press F12, then refresh');
+}
+
+function getReportType() {
+  const radios = Array.from(document.getElementsByTagName('input'));
+  let reporType = '';
+  radios.forEach(radio => {
+    if (radio.checked) reporType = radio.value;
+  });
+  return reporType;
+}
+
+export { createReport, isCaseCreatedByCall, returnCsvCommonReport, displayFileName };
