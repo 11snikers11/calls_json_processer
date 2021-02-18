@@ -12,6 +12,7 @@ function proceedCalls(call) {
     ani: call.ani,
     disconnectReason: call.disconnect_reason,
     isCaseCreated: isCaseCreatedByCall(call),
+    isFewCards: isClientHasFewCards(call),
     slots,
   };
 }
@@ -21,11 +22,23 @@ function isCaseCreatedByCall(call) {
   return steps.length > 0;
 }
 
+function isClientHasFewCards(call) {
+  const steps = call.steps.filter(step => consts.fewCardsNodeIds.includes(step.node_id));
+  return steps.length > 0;
+}
+
 function returnCsvFromArray(processedCalls) {
   const csvString = processedCalls
     .map(call => {
       const slots = call.slots.map(slot => (slot[0] ? slot[0].value : 'NONE'));
-      return [call.sessionId, call.ani, call.disconnectReason, call.isCaseCreated, slots];
+      return [
+        call.sessionId,
+        call.ani,
+        call.disconnectReason,
+        call.isCaseCreated,
+        call.isFewCards,
+        slots,
+      ];
     })
     .map(el => el.join(','))
     .join('\n');
