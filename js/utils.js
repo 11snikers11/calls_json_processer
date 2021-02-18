@@ -28,8 +28,9 @@ function isClientHasFewCards(call) {
 }
 
 function returnCsvFromArray(processedCalls) {
-  const csvString = processedCalls
-    .map(call => {
+  const csvString = [
+    ['ИД сессии', 'Ani', 'Причина разрыва', 'Обращение создано', 'Несколько карт', 'Шаги'],
+    ...processedCalls.map(call => {
       const slots = call.slots.map(slot => (slot[0] ? slot[0].value : 'NONE'));
       return [
         call.sessionId,
@@ -39,7 +40,8 @@ function returnCsvFromArray(processedCalls) {
         call.isFewCards,
         slots,
       ];
-    })
+    }),
+  ]
     .map(el => el.join(','))
     .join('\n');
   return csvString;
