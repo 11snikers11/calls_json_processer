@@ -34,7 +34,7 @@ function returnCsvFromArray(processedCalls) {
 
 function displayFileName(fileName) {
   const fileNameCaption = document.createElement('h3');
-  fileNameCaption.append(fileName + ' DONE, Press F12');
+  fileNameCaption.append(fileName + ' DONE, Press F12, then refresh');
   document.body.append(fileNameCaption);
 }
 
