@@ -21,10 +21,10 @@ function dropHandler(event) {
 
 function filesHandler(file) {
   if (file.type !== 'application/json') return;
-  displayFileName(file.name);
   const reader = new FileReader();
   reader.readAsText(file);
   reader.onload = () => onLoadHadler(reader.result);
+  displayFileName(file.name);
 }
 
 function onLoadHadler(response) {

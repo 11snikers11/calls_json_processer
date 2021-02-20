@@ -1,15 +1,15 @@
 import * as consts from './constants.js';
 import * as toasts from './toast.js';
 
-function createReport(call) {
+function createReport(calls) {
   const reportType = getReportType();
   switch (reportType) {
     case 'commonReport':
-      const commonReport = call.map(elem => createCommonReport(elem));
+      const commonReport = calls.map(createCommonReport);
       const csvCommonResult = returnCsvCommonReport(commonReport);
       return csvCommonResult;
     case 'intentReport':
-      const intentReport = call.map(elem => createIntentReport(elem));
+      const intentReport = calls.map(createIntentReport);
       const csvIntentResult = returnCsvIntentReport(intentReport);
       return csvIntentResult;
   }
@@ -100,11 +100,11 @@ function displayFileName(fileName) {
 
 function getReportType() {
   const radios = Array.from(document.getElementsByTagName('input'));
-  let reporType = '';
+  let reportType = '';
   radios.forEach(radio => {
-    if (radio.checked) reporType = radio.value;
+    if (radio.checked) reportType = radio.value;
   });
-  return reporType;
+  return reportType;
 }
 
 export { createReport, isCaseCreatedByCall, returnCsvCommonReport, displayFileName };
