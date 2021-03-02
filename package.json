@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html",
-    "build": "rm -rf dist & parcel build index.html"
+    "build": "rm -rf dist & parcel build index.html",
+    "deploy": "rm -rf dist & parcel build index.html & firebase deploy"
   },
   "repository": {
     "type": "git",
